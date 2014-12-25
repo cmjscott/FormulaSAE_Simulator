@@ -186,6 +186,9 @@ void functionalityDemonstration()
 	//Run simulations
 	test4Data = simulation4(testVehicle, dt);
 	
+	//save results
+	savers::outputData(test4Data, "test_output_data");
+
 	//Output data for matlab
 	//util::outputData(test4Data, "test_data");
 }
@@ -207,7 +210,7 @@ void init()
 		if (CreateDirectory(outputFolder.c_str(), NULL) ||
 			ERROR_ALREADY_EXISTS == GetLastError())
 		{
-			std::cout << "Folder created or exists" << std::endl;
+			std::cout << outputFolder <<  ": Folder created or exists" << std::endl;
 		}
 		else
 		{
