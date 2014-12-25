@@ -170,9 +170,10 @@ void functionalityDemonstration()
 
 	//create test objects
 	Vehicle testVehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, rho);
-	engine testEngine = engine(revMap, torqueMap, "test_engine");
+	//engine testEngine = engine(revMap, torqueMap, "test_engine");
 	//Transmission testTransmission = generateTransmission();
 	
+	engine testEngine = loaders::loadEngine("test_engine_save");
 	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
 
 	testVehicle.attachEngine(&testEngine);
