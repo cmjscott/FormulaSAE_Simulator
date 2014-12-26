@@ -169,8 +169,18 @@ engine generateEngine()
 	std::string engineName;
 	std::vector<double> revMap, torqueMap;
 
-	std::cout << std::endl << "Enter maximum RPM as an integer: ";
+	std::cout << std::endl << "Enter maximum RPM: ";
 	maxRpm = util::getSanitizedInput<double>();
+
+	std::cout << std::endl << "Enter engine name: ";
+	engineName = util::getSanitizedInput<std::string>();
+
+	if (util::yesNo("Efficiency factor?"))
+	{
+		std::cout << std::endl << "Enter engine efficiency factor: ";
+		efficiencyFactor = util::getSanitizedInput<double>(0,1);
+	}
+	else efficiencyFactor = 1;
 
 	std::cout << std::endl << "-----Torque table input-----" << std::endl;
 	std::cout << "Enter RPM values in ascending order, Torques in N-m" << std::endl << std::endl;
