@@ -9,11 +9,14 @@
 #include <conio.h>
 #include <string>
 #include "Vehicle.h"
+#include "engine.h"
+#include "Transmission.h"
 #include "utilityFunctions.h"
 
 
 
 Vehicle generateVehicle(int simulationFlag);
+engine generateEngine();
 Transmission generateTransmission();
 
 

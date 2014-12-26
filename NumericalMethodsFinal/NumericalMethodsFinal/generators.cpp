@@ -162,6 +162,47 @@ Vehicle generateVehicle(int simulationFlag)
 	return Vehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius);
 }
 
+engine generateEngine()
+{
+	int loopCount;
+	double maxRpm, valueHold, efficiencyFactor;
+	std::string engineName;
+	std::vector<double> revMap, torqueMap;
+
+	std::cout << std::endl << "Enter maximum RPM as an integer: ";
+	maxRpm = util::getSanitizedInput<double>();
+
+	std::cout << std::endl << "-----Torque table input-----" << std::endl;
+	std::cout << "Enter RPM values in ascending order, Torques in N-m" << std::endl << std::endl;
+
+	loopCount = 1;
+
+	do
+	{
+		std::cout << "Entry #: " << loopCount << std::endl;
+		std::cout << "RPM(" << loopCount << ") = ";
+
+		//Prompts user for RPM and torque values until the entered RPM excedes the maximum RPM value.
+		if (revMap.size() > 0)
+		{
+			do
+				valueHold = util::getSanitizedInput<double>();
+			while (valueHold <= revMap.back());
+		}
+		else
+			valueHold = util::getSanitizedInput<double>();
+
+		revMap.push_back(valueHold);
+
+		std::cout << "Torque(" << loopCount << ") = ";
+		torqueMap.push_back(util::getSanitizedInput<double>());
+		std::cout << std::endl;
+		++loopCount;
+	} while (revMap.back() < maxRpm);
+
+	return engine(revMap, torqueMap, engineName, efficiencyFactor);
+}
+
 Transmission generateTransmission()
 {
 	int loopCount(0);
