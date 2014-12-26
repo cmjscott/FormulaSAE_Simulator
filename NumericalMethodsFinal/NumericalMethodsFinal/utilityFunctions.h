@@ -12,7 +12,10 @@
 // for some reason including this fucks up some stuff.
 //#include <Windows.h>
 
-
+typedef enum {
+	LOWER_BOUND,
+	UPPER_BOUND
+}boundType;
 
 namespace util
 {
@@ -83,7 +86,6 @@ namespace util
 		return terminalInput;
 	}
 
-
 	template <typename T>
 	T getSanitizedInput(double lBound, double uBound)
 	{
@@ -120,6 +122,53 @@ namespace util
 
 		return terminalInput;
 	}
+
+
+
+
+	template <typename T>
+	T getSanitizedInput(double bound, boundType boundTyp)
+	{
+		T terminalInput;
+		bool failedInput = true;
+
+		do
+		{
+			std::cin >> terminalInput;
+
+			if (std::cin.fail())
+				std::cin.clear();
+
+			std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+
+			if (std::cin.gcount() > 1)
+			{
+				std::cout << "Error: invalid data entered." << std::endl;
+				std::cout << "Re-enter value as (" << typeid(T).name() << ")";
+
+				if (boundTyp == UPPER_BOUND)
+					std::cout << " smaller than " << bound << ": ";
+				else
+					std::cout << " larger than " << bound << ": ";
+			}
+			else
+			{
+				if ((terminalInput <= bound && boundTyp == UPPER_BOUND) || (terminalInput >= bound && boundTyp == LOWER_BOUND))
+					failedInput = false;
+				else
+				{
+					std::cout << "Error: data entered outside of given bound." << std::endl;
+					if (boundTyp == UPPER_BOUND)
+						std::cout << "Re-enter a value smaller than " << bound << ": ";
+					else
+						std::cout << "Re-enter a value larger than " << bound << ": ";
+				}
+			}
+		} while (failedInput);
+
+		return terminalInput;
+	}
+
 
 
 	//make another getSanitizedInput function that takes two parameter types, one being the type of data you want back and the other being the stream object

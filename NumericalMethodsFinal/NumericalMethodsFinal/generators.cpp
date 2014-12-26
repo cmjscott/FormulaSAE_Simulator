@@ -170,7 +170,7 @@ engine generateEngine()
 	std::vector<double> revMap, torqueMap;
 
 	std::cout << std::endl << "Enter maximum RPM: ";
-	maxRpm = util::getSanitizedInput<double>();
+	maxRpm = util::getSanitizedInput<double>(0, LOWER_BOUND);
 
 	std::cout << std::endl << "Enter engine name: ";
 	engineName = util::getSanitizedInput<std::string>();
@@ -195,9 +195,7 @@ engine generateEngine()
 		//Prompts user for RPM and torque values until the entered RPM excedes the maximum RPM value.
 		if (revMap.size() > 0)
 		{
-			do
-				valueHold = util::getSanitizedInput<double>();
-			while (valueHold <= revMap.back());
+				valueHold = util::getSanitizedInput<double>(revMap.back(), maxRpm);
 		}
 		else
 			valueHold = util::getSanitizedInput<double>();
@@ -222,7 +220,7 @@ Transmission generateTransmission()
 	std::vector<double> gearRatios, gearEtas;
 
 	std::cout << "Enter number of gears: ";
-	loopCount = util::getSanitizedInput<int>(1,900);
+	loopCount = util::getSanitizedInput<int>(1,LOWER_BOUND);
 	gearRatios.resize(loopCount);
 	gearEtas.assign(loopCount, 1);
 
