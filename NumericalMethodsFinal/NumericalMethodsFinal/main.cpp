@@ -185,10 +185,13 @@ void functionalityDemonstration()
 	testVehicle.attachTransmission(&testTransmission);
 
 	savers::saveComponent(testTransmission, "test_transmission_save", COMPONENT_TRANSMISSION);
+	savers::saveComponent(testTransmission, "test_transmission_save2", COMPONENT_TRANSMISSION);
+	savers::saveComponent(testTransmission, "test_transmission_save3", COMPONENT_TRANSMISSION);
+	savers::saveComponent(testTransmission, "test_transmission_save4", COMPONENT_TRANSMISSION);
 	savers::saveComponent(testEngine, "test_engine_save", COMPONENT_ENGINE);
 	savers::saveComponent(testVehicle, "test_vehicle_save", COMPONENT_VEHICLE);
 	
-
+	int test = listDir(COMPONENT_TRANSMISSION);
 	//Run simulations
 	test4Data = simulation4(testVehicle, dt);
 	
