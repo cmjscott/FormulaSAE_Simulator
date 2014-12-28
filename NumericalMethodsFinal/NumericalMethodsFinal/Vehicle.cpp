@@ -20,14 +20,15 @@ Vehicle::Vehicle() {}
 
 //constructor for sim 4
 Vehicle::Vehicle(double _mass, double _Cdrag, double _frontalArea,
-	double _diffRatio, double _wheelRadius, double _rho)
+	double _diffRatio, double _wheelRadius,std::string _name, double _rho)
 {
 	mass = _mass;
 	Cdrag = _Cdrag;
 	frontArea = _frontalArea;
 	Crr = 30 * Cdrag;
 	diffRatio = _diffRatio;
-	wheelRadius = _wheelRadius;	
+	wheelRadius = _wheelRadius;
+	name = _name;
 	rho = _rho;
 	transEff = .7;
 	simulationFlag = 4;
@@ -144,18 +145,17 @@ double Vehicle::getRPM()
 
 std::ostream& operator << (std::ostream& out, const Vehicle& obj)
 {
-	/*
-	mass
-	Cdrag
-	frontArea
-	Crr
-	diffRatio = _diffR
-	wheelRadius = _wheelRadius;
-	gearRatios = _gearRatios;
-	revMap = _revMap;
-	torqueMap = _torqueMap;
-	rho = _rho;
-	*/
+	out << "Vehicle" << std::endl;
+	out << obj.name << std::endl;
+	out << "Mass:" << obj.mass << std::endl;
+	out << "Cdrag:" << obj.Cdrag << std::endl;
+	out << "Frontal Area:" << obj.frontArea << std::endl;
+	out << "Crr:" << obj.Crr << std::endl;
+	out << "Diff ratio:" << obj.diffRatio << std::endl;
+	out << "Wheel radius:" << obj.wheelRadius << std::endl;
+	out << "Differential efficiency:" << obj.transEff << std::endl;
+	out << "Rho:" << obj.rho;
+
 	return out;
 }
 

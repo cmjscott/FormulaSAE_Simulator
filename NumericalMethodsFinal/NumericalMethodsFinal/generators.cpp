@@ -10,10 +10,14 @@ Vehicle generateVehicle(int simulationFlag)
 	int loopCount;
 	double mass, Cdrag, frontArea, diffRatio, wheelRadius, valueHold, maxRpm, driveForce, brakingForce;
 	std::vector<double> gearRatios, revMap, torqueMap;
+	std::string name;
 	Vehicle returnVehicle;
 
 
 	std::cout << std::endl << "--------------------------Enter data for simulation " << simulationFlag << "---------------------------" << std::endl;
+
+	std::cout << std::endl << "Enter name of vehicle";
+	name = util::getSanitizedInput<std::string>();
 
 	std::cout << std::endl << "Enter mass of Vehicle (kg): ";
 	mass = util::getSanitizedInput<double>();
@@ -159,7 +163,7 @@ Vehicle generateVehicle(int simulationFlag)
 	std::cout << std::endl << "Created vehicle for simulation " << simulationFlag <<". Press any key to continue" << std::endl << std::endl;
 	_getch();
 
-	return Vehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius);
+	return Vehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, name);
 }
 
 engine generateEngine()

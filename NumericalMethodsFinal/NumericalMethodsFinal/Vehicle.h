@@ -19,7 +19,7 @@ public:
 	// Constructors
 	Vehicle();
 	Vehicle(double _mass, double _Cdrag, double _frontalArea,													//constructor for simulation 4
-		double _diffRatios, double wheelRadius, double _rho = 1);
+		double _diffRatios, double wheelRadius, std::string _name, double _rho = 1);
 	
 
 	//public member functions
@@ -34,6 +34,7 @@ public:
 	
 	//public member variables
 	int simulationFlag;
+	std::string name;
 
 private:
 

@@ -167,16 +167,16 @@ void functionalityDemonstration()
 	std::vector<double> torqueMap = { 240, 250, 260, 270, 280, 290, 300, 305, 310, 305, 295, 285, 280, 270, 260 };
 	std::vector<double> gearRatios = { 2.785, 1.545, 1, .697 };
 	double rho(1.2041), dt(.001), mass(1685.1), Cdrag(.32), driveForce(1700), frontArea(2.1739), brakingForce(7700), diffRatio(4.11), wheelRadius(.33782);
-
+	std::string name = "james";
 	//create test objects from hard coded data above
-	Vehicle testVehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, rho);
+	Vehicle testVehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, name, rho);
 	//engine testEngine = engine(revMap, torqueMap, "test_engine");
 
 	// create test objects using the generators
 	//Transmission testTransmission = generateTransmission();
-	engine testEngine = generateEngine();
+	//engine testEngine = generateEngine();
 	
-	//engine testEngine = loaders::loadEngine("test_engine_save");
+	engine testEngine = loaders::loadEngine("test_engine_save");
 	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
 
 
@@ -189,7 +189,7 @@ void functionalityDemonstration()
 
 	savers::saveComponent(testTransmission, "test_transmission_save", COMPONENT_TRANSMISSION);
 	savers::saveComponent(testEngine, "test_engine_save", COMPONENT_ENGINE);
-
+	savers::saveComponent(testVehicle, "test_vehicle_save", COMPONENT_VEHICLE);
 	
 
 	//Run simulations
