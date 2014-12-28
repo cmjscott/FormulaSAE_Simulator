@@ -12,6 +12,6 @@
 
 extern componentSave components;
 void DisplayErrorBox(LPTSTR lpszFunction);
-int listDir(componentType_e _componentType);
+std::vector<std::string> listDir(componentType_e _componentType);
 
 #endif

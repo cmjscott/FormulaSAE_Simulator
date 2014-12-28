@@ -75,6 +75,18 @@ int main()
 
 std::vector<std::vector<double> > simulation4(Vehicle testVehicle, double _dt, double _timeToFullThrottle)
 {
+	/*
+	NOTE: when I move simulation to its own object, in the simulation generator let them set certain parameters
+	like time flags or acceleration/speed flags that lets them fine tune the simulation and when certain things activate
+	and when things deactivate.
+	ie: set how long it takes them to go from braking in a turn to full throttle, or if when accelerating from a throttle
+	position of 0 to full, how long and how that's eased in. Stuff like that? not sure, would be cool.
+
+	maybe look at APE and utilize some sort of test command queue that governs when each item activates and what it's triggers
+	are. So the program would watch all the output items each itteration and then check the trigger parameters of the next
+	simulation item against those values and would trigger them if they match. Don't know if a fifo stack would be the best
+	or if just an array because several commands could be global or something?
+	*/
 	std::vector<std::vector<double> > data;
 	std::vector<double> time, vel, acceleration, torque, rpm, dataHolder;
 	double throttle(0), zeroToSixtyTime(0);
@@ -191,12 +203,13 @@ void functionalityDemonstration()
 	savers::saveComponent(testEngine, "test_engine_save", COMPONENT_ENGINE);
 	savers::saveComponent(testVehicle, "test_vehicle_save", COMPONENT_VEHICLE);
 	
-	int test = listDir(COMPONENT_TRANSMISSION);
+	std::vector<std::string> test = listDir(COMPONENT_TRANSMISSION);
+
 	//Run simulations
-	test4Data = simulation4(testVehicle, dt);
+	//test4Data = simulation4(testVehicle, dt);
 	
 	//save results
-	savers::outputData(test4Data, "test_output_data");
+	//savers::outputData(test4Data, "test_output_data");
 
 	//Output data for matlab
 	//util::outputData(test4Data, "test_data");

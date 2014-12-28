@@ -1,18 +1,18 @@
 #include "windowsDirectory.h"
 
-int listDir(componentType_e _componentType)
+std::vector <std::string> listDir(componentType_e _componentType)
 {
+	std::vector<std::string> directoryList;
 	WIN32_FIND_DATA ffd;
 	LARGE_INTEGER filesize;
 	TCHAR szDir[MAX_PATH];
-	size_t length_of_arg;
 	HANDLE hFind = INVALID_HANDLE_VALUE;
 	DWORD dwError = 0;
 
 	
 	//components.registeredComponents[_componentType]
 	
-	_tprintf(TEXT("\nTarget directory is %s\n\n"), components.registeredComponents[_componentType]);
+	//_tprintf(TEXT("\nTarget directory is %s\n\n"), components.registeredComponents[_componentType]);
 
 	// Prepare string for use with FindFile functions.  First, copy the
 	// string to a buffer, then append '\*' to the directory name.
@@ -21,31 +21,30 @@ int listDir(componentType_e _componentType)
 	StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
 
 	// Find the first file in the directory.
-
 	hFind = FindFirstFile(szDir, &ffd);
 
 	if (INVALID_HANDLE_VALUE == hFind)
 	{
 		DisplayErrorBox(TEXT("FindFirstFile"));
-		return dwError;
 	}
 
 	// List all the files in the directory with some info about them.
 
 	do
 	{
-		if (ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
-		{
-			_tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
-		}
-		else
+		if (!(ffd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
 		{
 			filesize.LowPart = ffd.nFileSizeLow;
 			filesize.HighPart = ffd.nFileSizeHigh;
-			_tprintf(TEXT("  %s   %ld bytes\n"), ffd.cFileName, filesize.QuadPart);
+			directoryList.push_back(ffd.cFileName);
+			//_tprintf(TEXT("  %s   %ld bytes\n"), ffd.cFileName, filesize.QuadPart);
+		}
+		else
+		{
+			//_tprintf(TEXT("  %s   <DIR>\n"), ffd.cFileName);
 		}
 	} while (FindNextFile(hFind, &ffd) != 0);
-
+	
 	dwError = GetLastError();
 	if (dwError != ERROR_NO_MORE_FILES)
 	{
@@ -53,7 +52,7 @@ int listDir(componentType_e _componentType)
 	}
 
 	FindClose(hFind);
-	return dwError;
+	return directoryList;
 }
 
 
