@@ -169,19 +169,16 @@ void functionalityDemonstration()
 	double rho(1.2041), dt(.001), mass(1685.1), Cdrag(.32), driveForce(1700), frontArea(2.1739), brakingForce(7700), diffRatio(4.11), wheelRadius(.33782);
 	std::string name = "james";
 	//create test objects from hard coded data above
-	Vehicle testVehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, name, rho);
+	//Vehicle testVehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, name, rho);
 	//engine testEngine = engine(revMap, torqueMap, "test_engine");
 
 	// create test objects using the generators
 	//Transmission testTransmission = generateTransmission();
 	//engine testEngine = generateEngine();
 	
+	Vehicle testVehicle = loaders::loadVehicle("test_vehicle_save");
 	engine testEngine = loaders::loadEngine("test_engine_save");
 	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
-
-
-
-
 
 
 	testVehicle.attachEngine(&testEngine);

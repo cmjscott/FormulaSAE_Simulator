@@ -18,6 +18,7 @@ extern componentSave components;
 namespace loaders
 {
 	std::vector<std::string> loadFile(std::string _fileName, componentType_e _componentType);
+	Vehicle loadVehicle(std::string _fileName);
 	Transmission loadTransmission(std::string _fileName);
 	engine loadEngine(std::string _fileName);
 	std::vector<double> extractDoubles(std::string line);

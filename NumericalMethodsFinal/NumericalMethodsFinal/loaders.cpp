@@ -26,6 +26,27 @@ namespace loaders
 		return data;
 	}
 
+	Vehicle loadVehicle(std::string _fileName)
+	{
+		std::vector<std::string> data;
+		Vehicle loadedVehicle;
+		std::string loadedName;
+		double mass, Cdrag, frontalArea, diffRatio, wheelRadius, rho;
+
+		data = loadFile(_fileName, COMPONENT_VEHICLE);
+		loadedName = data[0];
+		mass = extractDoubles(data[1])[0];
+		Cdrag = extractDoubles(data[2])[0];
+		frontalArea = extractDoubles(data[3])[0];
+		diffRatio = extractDoubles(data[5])[0];
+		wheelRadius = extractDoubles(data[6])[0];
+		rho = extractDoubles(data[8])[0];
+
+		loadedVehicle = Vehicle(mass, Cdrag, frontalArea, diffRatio, wheelRadius, loadedName, rho);
+
+		return loadedVehicle;
+	}
+
 	Transmission loadTransmission(std::string _fileName)
 	{
 		std::vector<std::string> data;
