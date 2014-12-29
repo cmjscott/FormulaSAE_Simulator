@@ -60,7 +60,7 @@ int main()
 			std::cout << std::endl << "Enter name of data file: ";
 			fileName = util::getSanitizedInput<std::string>();
 
-			util::outputData(testData, fileName);
+			savers::outputData(testData, fileName);
 		}
 
 
@@ -175,6 +175,7 @@ void functionalityDemonstration()
 	*/
 
 	std::vector<std::vector<double> > test4Data;
+	std::vector<std::string> gearboxArray;
 	std::vector<double> revMap = { 1200, 1600, 2000, 2400, 2800, 3200, 3600, 4000, 4400, 4800, 5200, 5600, 6000, 6400, 6800 };
 	std::vector<double> torqueMap = { 240, 250, 260, 270, 280, 290, 300, 305, 310, 305, 295, 285, 280, 270, 260 };
 	std::vector<double> gearRatios = { 2.785, 1.545, 1, .697 };
@@ -188,31 +189,42 @@ void functionalityDemonstration()
 	//Transmission testTransmission = generateTransmission();
 	//engine testEngine = generateEngine();
 	
-	Vehicle testVehicle = loaders::loadVehicle("test_vehicle_save");
-	engine testEngine = loaders::loadEngine("test_engine_save");
-	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
-
+	Vehicle testVehicle = loaders::loadVehicle("test_vehicle_save.txt");
+	engine testEngine = loaders::loadEngine("test_engine_save.txt");
+	Transmission testTransmission;
 
 	testVehicle.attachEngine(&testEngine);
-	testVehicle.attachTransmission(&testTransmission);
 
-	savers::saveComponent(testTransmission, "test_transmission_save", COMPONENT_TRANSMISSION);
+	/*
+	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
+	testTransmission = generateTransmission();
 	savers::saveComponent(testTransmission, "test_transmission_save2", COMPONENT_TRANSMISSION);
+	testTransmission = generateTransmission();
 	savers::saveComponent(testTransmission, "test_transmission_save3", COMPONENT_TRANSMISSION);
+	testTransmission = generateTransmission();
 	savers::saveComponent(testTransmission, "test_transmission_save4", COMPONENT_TRANSMISSION);
+	*/
+
+	gearboxArray = listDir(COMPONENT_TRANSMISSION);
+
+	for (const auto& i : gearboxArray)
+	{
+		testTransmission = loaders::loadTransmission(i);
+		testVehicle.attachTransmission(&testTransmission);
+		test4Data = simulation4(testVehicle, dt);
+		savers::outputData(test4Data, testTransmission.name);
+	}
+
+
 	savers::saveComponent(testEngine, "test_engine_save", COMPONENT_ENGINE);
 	savers::saveComponent(testVehicle, "test_vehicle_save", COMPONENT_VEHICLE);
 	
-	std::vector<std::string> test = listDir(COMPONENT_TRANSMISSION);
-
 	//Run simulations
 	//test4Data = simulation4(testVehicle, dt);
 	
 	//save results
 	//savers::outputData(test4Data, "test_output_data");
 
-	//Output data for matlab
-	//util::outputData(test4Data, "test_data");
 }
 
 

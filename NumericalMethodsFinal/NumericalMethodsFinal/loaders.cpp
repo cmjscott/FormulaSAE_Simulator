@@ -9,7 +9,7 @@ namespace loaders
 		std::ifstream inFile;
 		std::string valueHold;
 
-		std::string filePath = components.registeredComponents[_componentType] + "/" + _fileName + ".txt";
+		std::string filePath = components.registeredComponents[_componentType] + "/" + _fileName;
 
 		inFile.open(filePath.c_str(), std::ios::in);
 
