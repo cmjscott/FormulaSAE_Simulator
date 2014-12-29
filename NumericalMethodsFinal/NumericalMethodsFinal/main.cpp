@@ -42,7 +42,7 @@ int main()
 		std::cout << std::endl;
 
 		//creates a test vehicle based on simulation value entered
-		simulationVehicle = generateVehicle(simulationFlag);
+		simulationVehicle = generateVehicle();
 		
 		if (simulationFlag != 1)
 		{
@@ -193,7 +193,7 @@ void functionalityDemonstration()
 	engine testEngine = loaders::loadEngine("test_engine_save.txt");
 	Transmission testTransmission;
 
-	testVehicle.attachEngine(&testEngine);
+	testVehicle.attachEngine(testEngine);
 
 	/*
 	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
@@ -210,7 +210,7 @@ void functionalityDemonstration()
 	for (const auto& i : gearboxArray)
 	{
 		testTransmission = loaders::loadTransmission(i);
-		testVehicle.attachTransmission(&testTransmission);
+		testVehicle.attachTransmission(testTransmission);
 		test4Data = simulation4(testVehicle, dt);
 		savers::outputData(test4Data, testTransmission.name);
 	}
