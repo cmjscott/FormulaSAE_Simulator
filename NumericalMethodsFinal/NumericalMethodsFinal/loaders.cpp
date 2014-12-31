@@ -6,18 +6,15 @@ namespace loaders
 	std::vector<std::string> loadFile(std::string _fileName, componentType_e _componentType)
 	{
 		std::vector<std::string> data;
+		std::ifstream inFile;
 		std::string valueHold;
 
 		std::string filePath = globalAccess::filePaths.registeredComponents[_componentType] + "/" + _fileName;
 
-		std::ifstream inFile(filePath.c_str(), std::ios::in);
-
-		if (!inFile.good())
-			throw std::ios_base::failure("Error, file not found.");
+		inFile.open(filePath.c_str(), std::ios::in);
 
 		//TODO: add error checking if the file is open, maybe throw some sort of error?
-
-		inFile.ignore(255, '\n');		//ignores the first line of the file, which is the component type tag. I might use this later.
+		inFile.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 
 		while (!inFile.eof())
 		{

@@ -4,7 +4,7 @@
 
 // prompts user for inputs for all vehicle parameters based on the chosen simulation and returns a vehicle object with the input parameters.
 
-Vehicle generateVehicle()
+Vehicle generateVehicle(int simulationFlag)
 {
 	//Variable declarations
 	int loopCount;
@@ -14,7 +14,7 @@ Vehicle generateVehicle()
 	Vehicle returnVehicle;
 
 
-	std::cout << std::endl << "--------------------------Enter data for simulation----------------------------" << std::endl;
+	std::cout << std::endl << "--------------------------Enter data for simulation " << simulationFlag << "---------------------------" << std::endl;
 
 	std::cout << std::endl << "Enter name of vehicle";
 	name = util::getSanitizedInput<std::string>();
@@ -26,9 +26,11 @@ Vehicle generateVehicle()
 	Cdrag =util::getSanitizedInput<double>();
 	
 	//Prompts user for a drive force unless simulation 4 was selected
-	
-	//std::cout << std::endl << "Enter drive force (N): ";
-	//driveForce = util::getSanitizedInput<double>();
+	if (simulationFlag != 4)
+	{
+		std::cout << std::endl << "Enter drive force (N): ";
+		driveForce = util::getSanitizedInput<double>();
+	}
 		
 	std::cout << std::endl << "Enter front area (m^2): ";
 	frontArea = util::getSanitizedInput<double>();
@@ -39,7 +41,7 @@ Vehicle generateVehicle()
 	std::cout << std::endl << "Enter differential ratio: ";
 	diffRatio = util::getSanitizedInput<double>();
 	
-	std::cout << std::endl << "Vehicle creation complete. Press any key to continue" << std::endl << std::endl;
+	std::cout << std::endl << "Created vehicle for simulation " << simulationFlag <<". Press any key to continue" << std::endl << std::endl;
 	_getch();
 
 	return Vehicle(mass, Cdrag, frontArea, diffRatio, wheelRadius, name);
@@ -64,6 +66,32 @@ engine generateEngine()
 		efficiencyFactor = util::getSanitizedInput<double>(0,1);
 	}
 	else efficiencyFactor = 1;
+
+	std::cout << std::endl << "-----Torque table input-----" << std::endl;
+	std::cout << "Enter RPM values in ascending order, Torques in N-m" << std::endl << std::endl;
+
+	loopCount = 1;
+
+	do
+	{
+		std::cout << "Entry #: " << loopCount << std::endl;
+		std::cout << "RPM(" << loopCount << ") = ";
+
+		//Prompts user for RPM and torque values until the entered RPM excedes the maximum RPM value.
+		if (revMap.size() > 0)
+		{
+				valueHold = util::getSanitizedInput<double>(revMap.back(), maxRpm);
+		}
+		else
+			valueHold = util::getSanitizedInput<double>();
+
+		revMap.push_back(valueHold);
+
+		std::cout << "Torque(" << loopCount << ") = ";
+		torqueMap.push_back(util::getSanitizedInput<double>());
+		std::cout << std::endl;
+		++loopCount;
+	} while (revMap.back() < maxRpm);
 
 	return engine(revMap, torqueMap, engineName, efficiencyFactor);
 }
@@ -90,11 +118,14 @@ Transmission generateTransmission()
 	for (int i = 0; i < loopCount; ++i)
 	{
 		std::cout << "Enter gear ratio for gear " << (i + 1) << ": ";
-
 		if (i == 0)
+		{
 			valueHold = util::getSanitizedInput<double>();
+		}
 		else
+		{
 			valueHold = util::getSanitizedInput<double>(0, gearRatios[i - 1]);
+		}
 
 		gearRatios[i] = valueHold;
 
