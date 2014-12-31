@@ -8,10 +8,9 @@
 #include <stdio.h>
 #include <strsafe.h>
 #include "Structs.h"
-#include "globalData.h"
-
 #pragma comment(lib, "User32.lib")
 
+extern componentSave components;
 void DisplayErrorBox(LPTSTR lpszFunction);
 std::vector<std::string> listDir(componentType_e _componentType);
 

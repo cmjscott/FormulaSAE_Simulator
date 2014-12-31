@@ -13,9 +13,8 @@
 #include "engine.h"
 #include "Vehicle.h"
 #include "Structs.h"
-#include "globalData.h"
 
-extern componentSavePath globalAccess::filePaths;
+extern componentSave components;
 
 namespace loaders
 {

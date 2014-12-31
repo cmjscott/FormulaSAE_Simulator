@@ -164,7 +164,6 @@
     </ClInclude>
     <ClInclude Include="engine.h" />
     <ClInclude Include="generators.h" />
-    <ClInclude Include="globalData.h" />
     <ClInclude Include="loaders.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="matlabFunctions.h" />
@@ -208,7 +207,6 @@
     </ClCompile>
     <ClCompile Include="engine.cpp" />
     <ClCompile Include="generators.cpp" />
-    <ClCompile Include="globalData.cpp" />
     <ClCompile Include="loaders.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matlabFunctions.cpp" />

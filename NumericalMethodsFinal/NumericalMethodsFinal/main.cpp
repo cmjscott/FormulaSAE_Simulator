@@ -5,7 +5,9 @@
 //#endif
 
 
+
 const double MS_TO_MPH(2.2368);
+componentSave components;
 
 int main()
 {
@@ -231,12 +233,12 @@ void init()
 	// make sure all directories are created and ready here
 	std::string outputFolder;
 
-	globalAccess::filePaths.registerComponent(COMPONENT_ENGINE, "../Engines");
-	globalAccess::filePaths.registerComponent(COMPONENT_TRANSMISSION, "../Transmissions");
-	globalAccess::filePaths.registerComponent(COMPONENT_VEHICLE, "../Vehicles");
-	globalAccess::filePaths.registerComponent(COMPONENT_RESULTS, "../Results");
+	components.registerComponent(COMPONENT_ENGINE, "../Engines");
+	components.registerComponent(COMPONENT_TRANSMISSION, "../Transmissions");
+	components.registerComponent(COMPONENT_VEHICLE, "../Vehicles");
+	components.registerComponent(COMPONENT_RESULTS, "../Results");
 	
-	for (auto i : globalAccess::filePaths.registeredComponents)
+	for (auto i : components.registeredComponents)
 	{
 		outputFolder = i.second;
 		if (CreateDirectory(outputFolder.c_str(), NULL) ||
