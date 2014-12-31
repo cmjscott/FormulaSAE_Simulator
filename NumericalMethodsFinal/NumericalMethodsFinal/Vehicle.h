@@ -25,8 +25,8 @@ public:
 	//public member functions
 	std::vector<double> simulateNextTimestep(double _currVelocity, double _dt, double _throttle = -1);
 	void setRho(double _rho);
-	void attachEngine(engine _engine);
-	void attachTransmission(Transmission _transmission);
+	void attachEngine(engine* _engine);
+	void attachTransmission(Transmission* _transmission);
 	~Vehicle();
 
 	//public friend functions
@@ -75,8 +75,8 @@ private:
 
 	std::vector<double> stateData;
 
-	engine attachedEngine;
-	Transmission attachedTransmission;
+	engine* attachedEngine;
+	Transmission* attachedTransmission;
 
 	//depreciated
 	//std::vector<double> revMap;
