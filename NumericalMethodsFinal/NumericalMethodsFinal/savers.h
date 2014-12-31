@@ -9,8 +9,8 @@
 #include <Windows.h>
 #include <vector>
 #include "Structs.h"
+#include "globalData.h"
 
-extern componentSave components;
 
 namespace savers
 {
@@ -20,7 +20,7 @@ namespace savers
 		
 		//std::string filePath = getenv("USERPROFILE");
 		//filePath += "\\Documents\\" + _fileName + ".txt";
-		std::string filePath = components.registeredComponents[_componentType] +"/" + _fileName + ".txt";
+		std::string filePath = globalAccess::filePaths.registeredComponents[_componentType] + "/" + _fileName + ".txt";
 		std::ofstream outfile;
 
 		// open file in write mode, overwriting if file exists.
@@ -41,7 +41,7 @@ namespace savers
 	template<typename T, typename A>
 	void outputData(std::vector<std::vector<T, A> > const& vec, std::string _fileName)
 	{
-		std::string filePath = components.registeredComponents[COMPONENT_RESULTS] + "/" + _fileName + ".txt";
+		std::string filePath = globalAccess::filePaths.registeredComponents[COMPONENT_RESULTS] + "/" + _fileName + ".txt";
 		std::ofstream outfile;
 		//std::string filePath = getenv("USERPROFILE");
 		//filePath += "\\Documents\\" + _fileName + ".csv";

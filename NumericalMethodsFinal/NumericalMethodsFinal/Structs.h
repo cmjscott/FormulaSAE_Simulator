@@ -18,7 +18,7 @@ typedef enum {
 	COMPONENT_RESULTS,
 }componentType_e;
 
-struct componentSave
+struct componentSavePath
 {
 	std::map<componentType_e, std::string> registeredComponents;
 
@@ -27,7 +27,6 @@ struct componentSave
 		registeredComponents.insert(std::pair<componentType_e, std::string>(_component, path)); 
 	}
 };
-
 
 //NOT USED
 //I DO NOT UNDERSTAND HOW THIS WORKS. FUCKING MAGIC, YO

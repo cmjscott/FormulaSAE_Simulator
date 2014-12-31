@@ -8,7 +8,7 @@ namespace loaders
 		std::vector<std::string> data;
 		std::string valueHold;
 
-		std::string filePath = components.registeredComponents[_componentType] + "/" + _fileName;
+		std::string filePath = globalAccess::filePaths.registeredComponents[_componentType] + "/" + _fileName;
 
 		std::ifstream inFile(filePath.c_str(), std::ios::in);
 
