@@ -173,7 +173,6 @@
     <ClInclude Include="Transmission.h" />
     <ClInclude Include="utilityFunctions.h" />
     <ClInclude Include="Vehicle.h" />
-    <ClInclude Include="windowsDirectory.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\Numot\Homework_3\Homework_3\mainn.cpp">
@@ -216,7 +215,6 @@
     <ClCompile Include="Transmission.cpp" />
     <ClCompile Include="utilityFunctions.cpp" />
     <ClCompile Include="Vehicle.cpp" />
-    <ClCompile Include="windowsDirectory.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\README.md" />
