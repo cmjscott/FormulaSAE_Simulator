@@ -66,6 +66,12 @@
     <ClInclude Include="savers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="windowsDirectory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="globalData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vehicle.cpp">
@@ -108,6 +114,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="savers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="windowsDirectory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="globalData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

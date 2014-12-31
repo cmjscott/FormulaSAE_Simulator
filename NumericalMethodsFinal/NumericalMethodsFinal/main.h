@@ -13,13 +13,13 @@
 #include "utilityFunctions.h"
 //#include "matlabFunctions.h"
 #include "generators.h"
-#include "prettyprint.h"
 #include "Vehicle.h"
 #include "savers.h"
 #include "loaders.h"
 #include "Structs.h"
+#include "windowsDirectory.h"
+#include "globalData.h"
 
-extern componentSave components;
 
 std::vector<std::vector<double> > simulation1(Vehicle testVehicle, double _dt);
 std::vector<std::vector<double> > simulation3(Vehicle testVehicle, double _dt);
