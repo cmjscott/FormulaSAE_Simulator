@@ -18,7 +18,6 @@ wheelRadius = 0.33782 m
 
 Vehicle::Vehicle() {}
 
-//constructor for sim 4
 Vehicle::Vehicle(double _mass, double _Cdrag, double _frontalArea,
 	double _diffRatio, double _wheelRadius,std::string _name, double _rho)
 {
@@ -38,8 +37,8 @@ Vehicle::~Vehicle() {}
  
 //Getters and Setters
 void Vehicle::setRho(double _rho) { rho = _rho; }
-void Vehicle::attachEngine(engine* _engine) { attachedEngine = _engine; }
-void Vehicle::attachTransmission(Transmission* _transmission) { attachedTransmission = _transmission; }
+void Vehicle::attachEngine(engine _engine) { attachedEngine = _engine; }
+void Vehicle::attachTransmission(Transmission _transmission) { attachedTransmission = _transmission; }
 
 std::vector<double> Vehicle::simulateNextTimestep(double _currVelocity, double _dt, double _throttle)
 {
@@ -102,15 +101,15 @@ double Vehicle::Frr(){ return -Crr * currVelocity;}//calculates the rolling resi
 //calculates the drive force based on throttle and torque
 double Vehicle::engineDriveForce() 
 {
-	torqueHolder = attachedEngine->getTorque(getRPM());
-	return torqueHolder * currentThrottle * attachedTransmission->getRatio() * diffRatio * transEff / wheelRadius;
+	torqueHolder = attachedEngine.getTorque(getRPM());
+	return torqueHolder * currentThrottle * attachedTransmission.getRatio() * diffRatio * transEff / wheelRadius;
 }
 
 //figures out if the car should shift or not.
 //TODO: move shifting functionality to the gearbox instead of the car? not sure how I want to handle shifting yet
 void Vehicle::shift()
 {	
-	if (attachedTransmission->maxGear)
+	if (attachedTransmission.maxGear)
 		return;
 
 	double currentRPM, upshiftedRPM;
@@ -118,11 +117,11 @@ void Vehicle::shift()
 
 	//calculates the rpm value at the current speed if the gear were increased to the next gear
 	//TODO: change the rpm function from using the current gear to taking a gear index as a parameter
-	upshiftedRPM = currVelocity / wheelRadius * (60 / (2 * M_PI)) * attachedTransmission->getNextRatio() * diffRatio;
+	upshiftedRPM = currVelocity / wheelRadius * (60 / (2 * M_PI)) * attachedTransmission.getNextRatio() * diffRatio;
 
-	if ((currentRPM - upshiftedRPM) / 2 >= (attachedEngine->peakTorqueRpm - upshiftedRPM))
+	if ((currentRPM - upshiftedRPM) / 2 >= (attachedEngine.peakTorqueRpm - upshiftedRPM))
 	{
-		attachedTransmission->upshift();
+		attachedTransmission.upshift();
 		std::cout << "shifted at " << currentRPM << " RPM." << std::endl;
 	}
 }
@@ -131,12 +130,13 @@ void Vehicle::shift()
 double Vehicle::getRPM()
 {
 	//TODO: change the minimum rpm to a settable attribute either in the engine or the car itself.
-	rpmHolder = currVelocity / wheelRadius *(60 / (2 * M_PI)) * attachedTransmission->getRatio() * diffRatio;
 
-	if (rpmHolder < 3000 && attachedTransmission->minGear)
+	rpmHolder = currVelocity / wheelRadius *(60 / (2 * M_PI)) * attachedTransmission.getRatio() * diffRatio;
+
+	if (rpmHolder < 3000 && attachedTransmission.minGear)
 		rpmHolder = 3000;
-	if (rpmHolder > attachedEngine->maxRpm)
-		rpmHolder = attachedEngine->maxRpm;
+	if (rpmHolder > attachedEngine.maxRpm)
+		rpmHolder = attachedEngine.maxRpm;
 
 	//added this because I wasn't sure if it was alright to return a class variable or not.
 	double rpm = rpmHolder;
