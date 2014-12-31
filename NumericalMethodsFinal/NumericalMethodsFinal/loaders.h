@@ -8,6 +8,7 @@
 #include <string>
 #include <sstream>
 #include <climits>
+#include <exception>
 #include "Transmission.h"
 #include "engine.h"
 #include "Vehicle.h"
