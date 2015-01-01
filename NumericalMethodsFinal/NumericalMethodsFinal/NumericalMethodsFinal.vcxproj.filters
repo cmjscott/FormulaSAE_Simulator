@@ -16,6 +16,9 @@
     <Filter Include="excluded">
       <UniqueIdentifier>{8364f333-613f-41e7-8e04-33090a82a685}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Tests">
+      <UniqueIdentifier>{85f517c1-7b81-443e-b437-053e275af0aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vehicle.h">
