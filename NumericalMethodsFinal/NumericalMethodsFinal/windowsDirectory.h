@@ -10,7 +10,7 @@
 #include "Structs.h"
 #pragma comment(lib, "User32.lib")
 
-extern componentSave components;
+extern componentPathRegistry componentPaths;
 void DisplayErrorBox(LPTSTR lpszFunction);
 std::vector<std::string> listDir(componentType_e _componentType);
 

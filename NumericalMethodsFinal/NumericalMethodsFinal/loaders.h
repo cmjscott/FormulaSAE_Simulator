@@ -14,7 +14,7 @@
 #include "Vehicle.h"
 #include "Structs.h"
 
-extern componentSave components;
+extern componentPathRegistry componentPaths;
 
 namespace loaders
 {

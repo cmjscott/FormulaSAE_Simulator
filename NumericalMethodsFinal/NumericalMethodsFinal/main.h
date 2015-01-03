@@ -19,7 +19,7 @@
 #include "Structs.h"
 #include "windowsDirectory.h"
 
-extern componentSave components;
+//extern componentPathRegistry componentPaths;
 
 std::vector<std::vector<double> > simulation1(Vehicle testVehicle, double _dt);
 std::vector<std::vector<double> > simulation3(Vehicle testVehicle, double _dt);

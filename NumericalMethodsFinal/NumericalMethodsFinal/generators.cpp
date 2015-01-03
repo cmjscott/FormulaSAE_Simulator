@@ -13,9 +13,6 @@ Vehicle generateVehicle()
 	std::string name;
 	Vehicle returnVehicle;
 
-
-	std::cout << std::endl << "--------------------------Enter data for simulation----------------------------" << std::endl;
-
 	std::cout << std::endl << "Enter name of vehicle";
 	name = util::getSanitizedInput<std::string>();
 

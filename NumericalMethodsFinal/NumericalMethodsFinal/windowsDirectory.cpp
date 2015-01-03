@@ -8,7 +8,7 @@ std::vector <std::string> listDir(componentType_e _componentType)
 	HANDLE hFind = INVALID_HANDLE_VALUE;
 	DWORD dwError = 0;
 
-	StringCchCopy(szDir, MAX_PATH, components.registeredComponents[_componentType].c_str());
+	StringCchCopy(szDir, MAX_PATH, componentPaths.registeredComponents[_componentType].c_str());
 	StringCchCat(szDir, MAX_PATH, TEXT("\\*"));
 
 	// Find the first file in the directory.

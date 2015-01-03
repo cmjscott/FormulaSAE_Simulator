@@ -7,7 +7,7 @@
 
 
 const double MS_TO_MPH(2.2368);
-componentSave components;
+componentPathRegistry componentPaths;
 
 int main()
 {
@@ -196,7 +196,7 @@ void functionalityDemonstration()
 	testVehicle.attachEngine(testEngine);
 
 	/*
-	Transmission testTransmission = loaders::loadTransmission("test_transmission_save");
+	testTransmission = loaders::loadTransmission("test_transmission_save.txt");
 	testTransmission = generateTransmission();
 	savers::saveComponent(testTransmission, "test_transmission_save2", COMPONENT_TRANSMISSION);
 	testTransmission = generateTransmission();
@@ -232,13 +232,13 @@ void init()
 {
 	// make sure all directories are created and ready here
 	std::string outputFolder;
-
-	components.registerComponent(COMPONENT_ENGINE, "../Engines");
-	components.registerComponent(COMPONENT_TRANSMISSION, "../Transmissions");
-	components.registerComponent(COMPONENT_VEHICLE, "../Vehicles");
-	components.registerComponent(COMPONENT_RESULTS, "../Results");
 	
-	for (auto i : components.registeredComponents)
+	componentPaths.registerComponent(COMPONENT_ENGINE, "../Engines");
+	componentPaths.registerComponent(COMPONENT_TRANSMISSION, "../Transmissions");
+	componentPaths.registerComponent(COMPONENT_VEHICLE, "../Vehicles");
+	componentPaths.registerComponent(COMPONENT_RESULTS, "../Results");
+	
+	for (auto i : componentPaths.registeredComponents)
 	{
 		outputFolder = i.second;
 		if (CreateDirectory(outputFolder.c_str(), NULL) ||

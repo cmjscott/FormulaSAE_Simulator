@@ -10,7 +10,6 @@
 #include "Vehicle.h"
 
 
-
 typedef enum {
 	COMPONENT_TRANSMISSION,
 	COMPONENT_ENGINE,
@@ -18,7 +17,7 @@ typedef enum {
 	COMPONENT_RESULTS,
 }componentType_e;
 
-struct componentSave
+typedef struct componentPathRegistry
 {
 	std::map<componentType_e, std::string> registeredComponents;
 
@@ -26,7 +25,10 @@ struct componentSave
 	{
 		registeredComponents.insert(std::pair<componentType_e, std::string>(_component, path)); 
 	}
-};
+}componentPathRegistry;
+
+
+
 
 
 //NOT USED
