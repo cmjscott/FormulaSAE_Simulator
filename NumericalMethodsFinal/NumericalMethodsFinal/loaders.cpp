@@ -11,10 +11,10 @@ namespace loaders
 
 		std::ifstream inFile(filePath.c_str(), std::ios::in);
 
-		if (!inFile.good())
+		if (!inFile)
 			throw std::ios_base::failure("Error, file not found.");
 
-		//TODO: add error checking if the file is open, maybe throw some sort of error?
+
 
 		inFile.ignore(255, '\n');		//ignores the first line of the file, which is the component type tag. I might use this later.
 
@@ -24,7 +24,6 @@ namespace loaders
 			data.push_back(valueHold);
 			valueHold.clear();
 		}
-
 		return data;
 	}
 
@@ -35,7 +34,15 @@ namespace loaders
 		std::string loadedName;
 		double mass, Cdrag, frontalArea, diffRatio, wheelRadius, rho;
 
-		data = loadFile(_fileName, COMPONENT_VEHICLE);
+		try 
+		{
+			data = loadFile(_fileName, COMPONENT_VEHICLE);
+		}
+		catch (std::ios_base::failure e) 
+		{
+			std::cout << e.what() << std::endl << e.code() << std::endl;
+
+		}
 		loadedName = data[0];
 		mass = extractDoubles(data[1])[0];
 		Cdrag = extractDoubles(data[2])[0];
