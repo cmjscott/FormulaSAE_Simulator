@@ -19,7 +19,7 @@ int main()
 
 	do
 	{
-		functionalityDemonstration();
+		test();
 		std::cout << "Demonstration simulations complete, press any key to quit";
 		_getch();
 		
@@ -110,7 +110,7 @@ std::vector<std::vector<double> > simulation4(Vehicle testVehicle, double _dt, d
 	return data;
 }
 
-void functionalityDemonstration()
+void test()
 {
 	std::vector<std::vector<double> > test4Data;
 	std::vector<std::string> gearboxArray;
@@ -178,6 +178,9 @@ void debug()
 {
 
 }
+
+
+
 //Depreciated
 /*
 std::vector<std::vector<double> > simulation1(Vehicle testVehicle, double _dt)

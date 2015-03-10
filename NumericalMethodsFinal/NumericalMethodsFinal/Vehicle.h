@@ -7,7 +7,6 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-//#include "prettyprint.h"
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "engine.h"
@@ -42,7 +41,7 @@ private:
 	double accel();
 	double deccel();
 	void shift();				  //shifts if rpm range is ideal
-	double fDrag();    //returns the drag forces ascociated with air resistance
+	double fDrag();				  //returns the drag forces ascociated with air resistance
 	double Frr();                 //returns the resistance ascociated with rolling
 	double velocity();
 	double brake();

@@ -75,6 +75,9 @@
     <ClInclude Include="displayers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="testMethods.h">
+      <Filter>Tests</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vehicle.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="displayers.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="testMethods.cpp">
+      <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
