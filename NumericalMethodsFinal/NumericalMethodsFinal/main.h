@@ -18,6 +18,7 @@
 #include "loaders.h"
 #include "Structs.h"
 #include "windowsDirectory.h"
+#include "testMethods.h"
 
 extern componentSave components;
 

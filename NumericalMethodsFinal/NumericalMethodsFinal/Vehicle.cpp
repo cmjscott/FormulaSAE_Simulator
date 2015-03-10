@@ -154,7 +154,7 @@ std::ostream& operator << (std::ostream& out, const Vehicle& obj)
 	out << "Diff ratio:" << obj.diffRatio << std::endl;
 	out << "Wheel radius:" << obj.wheelRadius << std::endl;
 	out << "Differential efficiency:" << obj.transEff << std::endl;
-	out << "Rho:" << obj.rho;
+	out << "Rho:" << obj.rho << std::endl;
 
 	return out;
 }

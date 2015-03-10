@@ -5,7 +5,7 @@
 
 
 extern componentSave components;
-void main();
+void test();
 void testComponentGeneration();
 engine testCreateEngine();
 Transmission testCreateTransmission();

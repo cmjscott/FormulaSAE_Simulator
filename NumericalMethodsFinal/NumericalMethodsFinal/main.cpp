@@ -14,20 +14,10 @@ int main()
 
 	int simulationFlag(99);				//get rid of default value later. for test purposes
 	
-	//gearRatios.assign(ratioValues, ratioValues + sizeof(ratioValues) / sizeof(double));
 	init();
+	test();
 
-	do
-	{
-		test();
-		std::cout << "Demonstration simulations complete, press any key to quit";
-		_getch();
-		
-	} while (util::yesNo("Run another simulation?")); //loop back through code and run another simulation.
-
-	std::cout << "Simulations complete, press any key to quit";
 	_getch();
-
 	return 0;
 }
 
@@ -110,7 +100,7 @@ std::vector<std::vector<double> > simulation4(Vehicle testVehicle, double _dt, d
 	return data;
 }
 
-void test()
+void UNUSEDtest()
 {
 	std::vector<std::vector<double> > test4Data;
 	std::vector<std::string> gearboxArray;
@@ -171,6 +161,7 @@ void init()
 		else
 			std::cout << "Folder not created" << std::endl;
 	}
+	std::cout << std::endl;
 	//std::string(OutputFolder + CopiedFile).c_str();
 }
 

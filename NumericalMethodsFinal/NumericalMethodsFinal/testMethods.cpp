@@ -4,7 +4,19 @@
 
 void test()
 {
+	engine testEngine = testCreateEngine();
+	std::cout << testEngine;
 
+	Transmission testTransmission = testCreateTransmission();
+	std::cout << testTransmission;
+
+	Vehicle testVehicle = testCreateVehicle();
+	std::cout << testVehicle;
+
+	testVehicle.attachEngine(testEngine);
+	testVehicle.attachTransmission(testTransmission);
+
+	std::cout << "Test Complete." << std::endl;
 }
 
 void testComponentGeneration()
