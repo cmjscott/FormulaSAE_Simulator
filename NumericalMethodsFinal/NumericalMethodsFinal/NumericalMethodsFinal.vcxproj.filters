@@ -72,11 +72,14 @@
     <ClInclude Include="windowsDirectory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="displayers.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="testMethods.h">
       <Filter>Tests</Filter>
+    </ClInclude>
+    <ClInclude Include="overloads.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UI.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -122,14 +125,14 @@
     <ClCompile Include="savers.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="testMethods.cpp">
+      <Filter>Tests</Filter>
+    </ClCompile>
     <ClCompile Include="windowsDirectory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="displayers.cpp">
+    <ClCompile Include="UI.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="testMethods.cpp">
-      <Filter>Tests</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
